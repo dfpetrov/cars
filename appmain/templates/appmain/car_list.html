@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="row" style="height: 100px;"></div>
+        <div class="row">
+
+            <!-- фильтр -->
+            <div class="col-4 border">
+                <h4 class="display-4">Фильтр</h4>
+
+                <h4 class="my-3">Производитель</h4>
+                <div class="form-group">
+                    <select form="filter" class="form-control" id="manufacturer" name="manufacturer">
+                        <option value="BMW">BMW</option>
+                        <option value="Audi">Audi</option>
+                        <option value="Lada">Lada</option>
+                        <option value="Mazda">Mazda</option>
+                    </select>
+                </div>
+
+                <h4 class="my-3">Модель</h4>
+                <div class="form-group">
+                    <select form="filter" class="form-control" id="model" name="model">
+                        <option value="x5">x5</option>
+                        <option value="x6">x6</option>
+                        <option value="q7">q7</option>
+                        <option value="3">3</option>
+                        <option value="VESTA">VESTA</option>
+                    </select>
+                </div>
+                
+                <h4 class="my-3">Год выпуска</h4>
+                <div class="form-group">
+                    <label for="selectYear">Выбранный и новее</label>
+                    <select form="filter" class="form-control" id="year" name="year">
+                        <option>2010</option>
+                        <option>2011</option>
+                        <option>2012</option>
+                        <option>2013</option>
+                        <option>2014</option>
+                        <option>2015</option>
+                        <option>2016</option>
+                        <option>2017</option>
+                        <option>2018</option>
+                        <option>2019</option>
+                        <option>2020</option>
+                    </select>
+                </div>
+
+                <h4 class="my-3">Коробка</h4>
+                <div class="form-group">
+                    <label for="selectTrans">Выбранный и новее</label>
+                    <select form="filter" class="form-control" id="transmission" name="transmission">
+                        <option value="a">Автомат</option>
+                        <option value="m">Механика</option>
+                        <option value="r">Робот</option>
+                    </select>
+                </div>
+
+
+                <form method="get" id="filter">
+                    <input type="submit" class="btn btn-primary" value="Применить" name="btnFiltrSet">
+                    <a href="{% url 'appmain:index' %}" class="btn btn-warning my-1">Сбросить</a>
+                </form>
+            </div>
+            <!-- //END фильтр -->
+
+            <!-- данные -->
+            <div class="col-8">
+                <table class="table table-hover table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Производитель</th>
+                            <th scope="col">Модель</th>
+                            <th scope="col">Год выпуска</th>
+                            <th scope="col">Коробка</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for car in car_list %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }} </th>
+                            <td>{{car.manufacturer}}</td>
+                            <td>{{car.model}}</td>
+                            <td>{{car.year}}</td>
+                            <td>{{car.get_transmission_display}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <!-- //END данные -->
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+
+</body>
+
+</html>
